@@ -17,19 +17,18 @@ export const useStore = defineStore('storeId', {
   },
   actions:  {
 
-    salva(description, category, money, date, conta, receita){
+    salva(description, category, money, date, conta){
       this.description = description,
       this.money = money,
       this.category = category,
       this.date = date,
       this.conta = conta,
 
-      console.log(this.description);
     }
   },
   getters: {
     olha(){
-      return this.description
+      
     }
   }
 })
