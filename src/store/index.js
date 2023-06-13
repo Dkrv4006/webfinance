@@ -1,34 +1,36 @@
+import { newTrasation } from '@/servers/newtransaction'
 import { defineStore } from 'pinia'
 
 
 
 export const useStore = defineStore('storeId', {
-  // arrow function recommended for full type inference
-  state: () => {
-    return {
-      // all these properties will have their type inferred automatically
+  state: () => ({
+    receita: {
       description: '',
       money: '',
       category: '',
       date: '',
       conta: '',
-
     }
-  },
-  actions:  {
+}),
 
+
+  actions:{
     salva(description, category, money, date, conta){
-      this.description = description,
-      this.money = money,
-      this.category = category,
-      this.date = date,
-      this.conta = conta,
+      this.receita.description = description
+      this.receita.money = money
+      this.receita.category = category
+      this.receita.date = date
+      this.receita.conta = conta
 
-    }
+      this.olha
   },
+},
+
   getters: {
     olha(){
-      
+      console.log(this.receita.description);
+      newTrasation(this.receita)
     }
   }
 })

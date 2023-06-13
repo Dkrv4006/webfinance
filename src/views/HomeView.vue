@@ -57,7 +57,7 @@
             <v-form  @submit="submitForm">
             <v-text-field color="primary01" clearable label="Descrição" prepend-icon="mdi-bank" variant="plain" v-model="description" ></v-text-field>
             <v-text-field color="primary01" clearable label="R$0,00" prepend-icon="mdi-bank" variant="plain" v-model="money" ></v-text-field>
-            <v-text-field color="primary01" clearable label="Data" prepend-icon="mdi-bank" variant="plain" v-model="dete" >{{ da }}</v-text-field>
+            <v-text-field color="primary01" clearable label="Data" prepend-icon="mdi-bank" variant="plain" v-model="dete" ></v-text-field>
             <v-autocomplete :items="items" prepend-icon="mdi-bank"  label="Conta" variant="plain" v-model="conta" ></v-autocomplete>
             <v-autocomplete :items="items" prepend-icon="mdi-bank"  label="Categotia" variant="plain" v-model="category" ></v-autocomplete>
             <v-btn type="submit" block class="mt-2" color="primary">Submit</v-btn>
@@ -182,9 +182,13 @@ export default defineComponent({
       const storeId = useStore()
 
       storeId.salva(this.description, this.money, this.category, this.date, this.conta)
+
       
-      
-       this.da = storeId.olha
+      this.description = '', 
+      this.money = '', 
+      this.category = '', 
+      this.date = '', 
+      this.conta = ''
     }
   },
 
