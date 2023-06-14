@@ -1,67 +1,62 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, getDocs, updateDoc, deleteDoc } from "firebase/firestore";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC2YaseeRdmaHGfF26IDrRuhcXh0H8mjt0",
-  authDomain: "botfinancas-29527.firebaseapp.com",
-  projectId: "botfinancas-29527",
-  storageBucket: "botfinancas-29527.appspot.com",
-  messagingSenderId: "885551410938",
-  appId: "1:885551410938:web:ca1f4b4f15620edf036343"
-};
+import { auths, db, provider,  } from '@/main'
+import { useStore } from "./index";
 
 
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function loginComGoogle() {
-  const provider = new GoogleAuthProvider();
-  
-  try {
-    const result = await signInWithPopup(provider);
-    const user = result.user;
-    console.log('Usuário autenticado com sucesso:', user);
-  } catch (error) {
-    console.error('Erro ao autenticar usuário:', error);
-  }
+const deleteFinance = async (id) => {
+  await deleteDoc(doc(db, "revenue", id));
 }
+async function getAllCategoris() {
+  const storeId = useStore()
+    const email = await storeId.getEmail
+      try {
+        const citiesRef = collection(db, email, "categoris", "types")
+        const citiesSnapshot = await getDocs(citiesRef);
+        let dados = []
+        citiesSnapshot.forEach((doc) => {
+          if (doc.exists()) {
+            const { categoris } = doc.data()
+            dados.push(categoris)
+            
+          } else {console.log("O documento não existe.");
+          }
+          
+        });
+        
+        storeId.init(dados)
+        getAllMoney()
+      } catch (error) {
+        console.error("Erro ao obter documentos:", error);
+      }
+ }
 
-loginComGoogle();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const deleteFinance = async (id) => {
-    await deleteDoc(doc(db, "revenue", id));
-
-  }
-
-
+async function getAllMoney() {
+    const storeId = useStore()
+    const email = await storeId.getEmail
+      try {
+        const citiesRef = collection(db, email, "money", "types")
+        const citiesSnapshot = await getDocs(citiesRef);
+        let dados = []
+        citiesSnapshot.forEach((doc) => {
+          if (doc.exists()) {
+            const { categoris } = doc.data()
+            dados.push(categoris)
+            
+          } else {console.log("O documento não existe.");
+          }
+          
+        });
+        
+        console.log('get', dados);
+      } catch (error) {
+        console.error("Erro ao obter documentos:", error);
+      }
+ }
   
+  
+
   async function addMoneyDB() {
     try {
       const docRef = await addDoc(collection(db, "account"), {
@@ -113,6 +108,6 @@ loginComGoogle();
 //   getAllFinance()
 
 export {
-    getAllFinance,
+    getAllCategoris,
     deleteFinance
 }

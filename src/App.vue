@@ -6,13 +6,6 @@
 
       <Admin  />
       <!-- <div class="fixed"> -->
-
-        <!-- <router-view/> -->
-       
-      <!-- </div> -->
-
-
-
 </template>
 <script>
 import Admin from './layout/Admin.vue';

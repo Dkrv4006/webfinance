@@ -167,11 +167,8 @@
   </v-card>
 </template>
 
-<script>
-export default {
-    name:'Overview'
+<script setup>
 
-}
 </script>
 
 <style>

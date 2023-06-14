@@ -1,90 +1,82 @@
 <template>
     <Header>
         <v-card
-    class="mx-auto"
-    max-width="398"
-    color="secondary"
-    
-  >
+          v-for="(item, index) in creditCards.card"
+          :key="index"
+          class="mx-auto my-3"
+          max-width="398"
+          color="secondary"
+        >
   <v-row>
-    <v-col cols="8">
-      <v-card-item :title="creditCards.nameCard" color="primary">
+    <v-col cols="7">
+      <v-card-item :title="item.nameCard" color="primary">
       </v-card-item>
 
     </v-col>
-    <v-col cols="1" class="d-flex align-center">
-      <v-btn 
-    class="" 
-    href="/about" 
-    color="secondary"
-    elevation="0">
-    <v-icon to="/abaut" icon="mdi-dots-vertical" ></v-icon>
-  </v-btn>
-    </v-col>
-    <v-col cols="1" class="d-flex align-center">
-      <v-btn 
-    class="" 
-    href="/about" 
-    color="secondary"
-    elevation="0">
-    <v-icon to="/abaut" icon="mdi-dots-vertical" ></v-icon>
-  </v-btn>
-    </v-col>
-    <v-col cols="1" class="d-flex align-center">
-      <v-btn 
-    class="" 
-    href="/about" 
-    color="secondary"
-    elevation="0">
-    <v-icon to="/abaut" icon="mdi-dots-vertical" ></v-icon>
-  </v-btn>
+    <v-col cols="5" class="d-flex align-center">
+
+      <v-btn icon="mdi-format-align-left"
+      :color="item.cor"
+      variant="tanal"
+      ></v-btn>
+      <v-btn icon="mdi-format-align-left"
+      :color="item.cor"
+      variant="tanal"
+      ></v-btn>
+      <v-btn icon="mdi-format-align-left"
+      :color="item.cor"
+      variant="tanal"
+      ></v-btn>
+
+
+
     </v-col>
   </v-row>
-    <!-- <hr color="#FF1867"> -->
-    <v-divider color="#FF1867"  :thickness="9"></v-divider>
-    <v-container>
-        <v-row  >
+
+    <v-divider :color="item.cor"  :thickness="9"></v-divider>
+    <v-container >
+        <v-row >
             <v-row no-gutters >
                 <v-col align="center" cols="12" class="text-caption" >Limite</v-col>
-                <v-col  align="center" cols="12" class="text-caption">{{ creditCards.limite}}</v-col>
+                <v-col  align="center" cols="12" class="text-caption">{{ item.emaberto }}</v-col>
             </v-row>
             <v-row no-gutters >
                 <v-col align="center" cols="12" class="text-caption" >Em aberto</v-col>
-                <v-col  align="center" cols="12" class="text-caption">{{ creditCards.emaberto }}</v-col>
+                <v-col  align="center" cols="12" class="text-caption">{{ item.emaberto }}</v-col>
             </v-row>
             <v-row no-gutters >
                 <v-col align="center" cols="12" class="text-caption" >lim.disponivel</v-col>
-                <v-col  align="center" cols="12" class="text-caption" >{{creditCards.limite - creditCards.emaberto}}</v-col>
+                <v-col  align="center" cols="12" class="text-caption" >{{item.limite - item.emaberto}}</v-col>
             </v-row>
-        </v-row>
-        <v-range-slider :model-value="[0,10]" :max="10"  color="primary" ></v-range-slider>
-        <v-row  >
-            <v-row no-gutters >
-                <v-col align="center" cols="12" class="text-caption" >{{ creditCards.limite }}</v-col>
-                <v-col  align="center" cols="12" class="text-caption" >{{ creditCards.fechamento }}</v-col>
-            </v-row>
-            <v-row no-gutters >
-                <v-col align="center" cols="12" class="text-caption" >{{ creditCards.limite }}</v-col>
-                <v-col  align="center" cols="12" class="text-caption" >{{ creditCards.fechamento }}</v-col>
-            </v-row>
-            <v-row no-gutters >
-                <v-col align="center" cols="12" class="text-caption" >{{ creditCards.limite }}</v-col>
-                <v-col  align="center" cols="12" class="text-caption" >{{ creditCards.fechamento }}</v-col>
-            </v-row>
-        </v-row>
-        <v-row  >
-            <v-col align="start" cols="6" title="ere" >{{ creditCards.limite }}</v-col>
-            <v-col  align="end" cols="6" >{{ creditCards.fechamento }}</v-col>
-        </v-row>
-    </v-container>
-    
-
-    
-
+            <v-progress-linear :max="item.limite" rounded :color="item.cor" :model-value="item.limite - item.emaberto" :height="5"></v-progress-linear>
+          </v-row>
+          
+          <v-row  >
+            <v-col align="start" cols="6" title="ere" >{{ item.limite }}</v-col>
+            <v-col  align="end" cols="6" >{{ item.fechamento }}</v-col>
+          </v-row>
+        </v-container>
+        <v-spacer></v-spacer>
     
 
 
+    
+    
+    
+    
+    
   </v-card>
+  <div>
+    <div v-for="(card, index) in creditCards" :key="index">
+      <!-- Renderizar os dados do cartão aqui -->
+      <p>Limite: {{ card.limite }}</p>
+      <p>Em aberto: {{ card.emaberto }}</p>
+      <p>Nome do cartão: {{ card.nameCard }}</p>
+      <p>Fatura: {{ card.fatura }}</p>
+      <p>Fechamento: {{ card.fechamento }}</p>
+      <p>Vencimento: {{ card.vencimento }}</p>
+    </div>
+  </div>
         <div>
             <h2>Cartões de credito</h2>
             <v-btn to="/">home</v-btn>
@@ -99,12 +91,35 @@ import { useStore } from '@/store/index'
 import { ref } from 'vue';
 
 const creditCards = ref({
+ card:[
+     {
     limite: 1000,
     emaberto: 100,
     nameCard: 'Nubank',
     fatura: 100,
     fechamento: '01/jun',
-    vencimento:  '01/jun'
+    vencimento:  '01/jun',
+    cor: '#4a3485'
+  },
+   {
+    limite: 1300,
+    emaberto: 423,
+    nameCard: 'Nuba',
+    fatura: 400,
+    fechamento: '01/jun',
+    vencimento:  '01/jun',
+    cor: '#4a3425'
+  },
+   {
+    limite: 4230,
+    emaberto: 423,
+    nameCard: 'ank',
+    fatura: 1230,
+    fechamento: '01/jun',
+    vencimento:  '01/jun',
+    cor:  '#013324',
+  },
+]
 })
 
 const storeId = useStore()

@@ -11,7 +11,9 @@ export const useStore = defineStore('storeId', {
       category: '',
       date: '',
       conta: '',
-    }
+    },
+    categoris: [],
+    user: []
 }),
 
 
@@ -25,12 +27,25 @@ export const useStore = defineStore('storeId', {
 
       this.olha
   },
+
+  init(data){
+    this.categoris = data
+
+  },
+  salveUser(data){
+    const { email } = data
+    this.user = email
+
+  }
 },
 
   getters: {
     olha(){
-      console.log(this.receita.description);
       newTrasation(this.receita)
+      return  this.categoris
+    },
+    getEmail(){
+      return this.user
     }
   }
 })

@@ -101,5 +101,6 @@ export default ({
 <style scoped>
 .color{
   background: black;
+  backgr: #ff7070;
 }
 </style>

@@ -2,6 +2,7 @@
     
     <Header>
 
+        <Overview/>
 
     
     <div>
@@ -13,9 +14,10 @@
 
 <script>
 import {Header} from '@/components/header/Header.vue'
+import Overview from '@/components/overview/overview.vue';
     export default {
         name:' AccountsView',
-        components:{Header}
+        components:{Header, Overview }
         
     }
 </script>
