@@ -122,8 +122,13 @@ const creditCards = ref({
 ]
 })
 
+const jsonString = JSON.stringify(creditCards);
+const sizeInBytes = new Blob([jsonString]).size;
+const sizeInKB = sizeInBytes / 1024;
+console.log(sizeInKB); // Saída: tamanho em kilobytes (KB)
+
 const storeId = useStore()
-console.log(storeId.name);
+
 </script>
 
 <style  scoped>

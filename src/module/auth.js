@@ -7,6 +7,7 @@ export default {
     auth(to, from, next){
         
         onAuthStateChanged(auths, async (user) => {
+          console.log('auth');
           if (!user) {
             next('/login')
           } else if (user) {

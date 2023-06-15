@@ -9,23 +9,31 @@
 </template>
 <script>
 import Admin from './layout/Admin.vue';
-import { onBeforeMount } from "vue";
+import { onBeforeMount,onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, getAuth } from 'firebase/auth'
 import { auth, db, provider,  } from '@/main'
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import { getAllCategoris } from '@/store/db';
 
 export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-    console.log('onBeforeMount');
-
+    
     onBeforeMount(async () => {
-      console.log('aa');
+      console.log('onBeforeMount1');
+      
         
       }
     )
+    onMounted( () => {
+      console.log('onMounted()');
+
+        
+      }
+    )
+
   },
   components: { Admin }
 }

@@ -6,16 +6,24 @@ import { getAllCategoris } from '@/store/db';
 
 const newTrasation =  async (data) => {
 
-          if (!data) {
-            alert('errro')
-          } else if (data) {
-            const userData = localStorage.getItem('userData')
-            const {email} = JSON.parse(userData);
+  if (!data) {
+    alert('errro')
+  } else if (data) {
+    const userData = localStorage.getItem('userData')
+    const {email} = JSON.parse(userData);
+
             const uuid = uuidV4()
-            console.log(uuid);
-                await setDoc(doc(db, email, 'receita', 'todo' , uuid), data);
-               console.log("data ", data);
-getAllCategoris()
+
+                 await setDoc(doc(db, email, 'money', 'types' , uuid), {
+                  description: data.description,
+                  money: data.money,
+                  category: data.category,
+                  date: data.date,
+                  conta: data.conta,
+                  dateCreate: data.dateCreate,
+                 });
+               
+
 
           }
 }
