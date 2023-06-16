@@ -110,7 +110,7 @@
   
   main{
     position: relative;
-    padding-top: 100px;
+    padding-top: 64px;
     height: 1000px;
   }
 

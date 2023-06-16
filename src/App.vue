@@ -1,42 +1,21 @@
 
 <template>
+<Header>
 
-
-
-
-      <Admin  />
-      <!-- <div class="fixed"> -->
+<router-view v-slot="{ Component }">
+   <transition name="fade" >
+    <component :is="Component" />
+</transition>
+</router-view>
+</Header>
 </template>
-<script>
-import Admin from './layout/Admin.vue';
+<script setup>
+
 import { onBeforeMount,onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, getAuth } from 'firebase/auth'
-import { auth, db, provider,  } from '@/main'
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { getAllCategoris } from '@/store/db';
+import Header from '@/components/header/Header.vue';
 
-export default {
-  setup() {
-    const route = useRoute()
-    const router = useRouter()
-    
-    onBeforeMount(async () => {
-      console.log('onBeforeMount1');
-      
-        
-      }
-    )
-    onMounted( () => {
-      console.log('onMounted()');
-
-        
-      }
-    )
-
-  },
-  components: { Admin }
-}
+ 
 </script>
 
 
@@ -54,6 +33,21 @@ body, html{
 
   /* color: #ffffff; */
   background: #000000;
+}
+.fade-enter-from{
+      opacity: 0;
+      transform: translateX(100px);
+}
+.fade-enter-active{
+      transition: ass 0.3s ease-out;
+}
+.fade-leave-to {
+      opacity: 0;
+      transform: translateX(-100px);
+}
+
+.fade-leave-active {
+  transition: all 0.3s ease-in;
 }
 
 </style>

@@ -1,19 +1,18 @@
 
 <template>
 
-        <router-view/>
-        <!-- <div class="fixed"> -->
 
+    
   </template>
   
-  <script>
+  <script setup>
 
-  
-    export default {
-        name: 'Admin',
 
-  }
-  
+
+
   </script>
   
   
+<style>
+
+</style>

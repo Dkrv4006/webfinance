@@ -1,9 +1,13 @@
 <template>
-  <Header>
-    <v-carousel  height="100" hide-delimiters progress="primary" v-model="selectedSlide">
+  <v-card
+    elevation="24"
+    max-width="400"
+    class="mx-auto my-5"
+  >
+    <v-carousel  height="50" m hide-delimiters progress="primary" v-model="selectedSlide">
       <template v-slot:prev="{ props }">
       <v-btn
-        variant="elevated"
+        elevation="0"
         color="secondary  primary-text"
         icon="mdi-chevron-left"
         @click="props.onClick"
@@ -11,22 +15,24 @@
     </template>
     <template v-slot:next="{ props }">
       <v-btn
-        variant="elevated"
+      elevation="0"
         color="secondary  primary-text"
         icon="mdi-chevron-right"
         @click="props.onClick"
       ></v-btn>
     </template>
-    <v-carousel-item v-for="(slide, i) in slides" :key="i" color="secondary">
+    <v-carousel-item v-for="(slide, i) in months" :key="i" color="secondary">
       <v-sheet height="100%" color="secondary">
         <div class="d-flex fill-height justify-center align-center" color="secondary">
           <div class="text-h6" color="primary">
-            {{ slide }} Slide
+            {{ slide }}
+            
           </div>
         </div>
       </v-sheet>
     </v-carousel-item>
   </v-carousel>
+</v-card>
     <Overview />
     <v-menu :location="location"  transition="scale-transition" >
       <template v-slot:activator="{ props }">
@@ -61,7 +67,7 @@
           </v-list-item>
         </v-list>
     </v-menu>
-
+{{ months }}
     <v-row >
 
       <v-dialog v-model="dialogVisible" transition="dialog-bottom-transition" width="auto">
@@ -173,15 +179,15 @@
               Today
             </div>
   
-            <v-timeline density="compact" align="start" line-color="primary" va> 
+            <v-timeline density="compact" align="start"> 
               <v-timeline-item
               v-for="(item , index ) in storeId.getMoney " :key="index"
    
                 dot-color="secondary"
-                :icon="item.money > 0 ? 'mdi-home' : 'mdi-bank'"
+                :icon="item.money > 0 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-right'"
                 size="small"
                 fill-dot
-                icon-color="red"
+                :icon-color="item.money > 0 ? 'success' : 'error'"
               >
                 <div class="mb-4">
                   <div class="font-weight-normal">
@@ -193,7 +199,7 @@
                   <div class="font-weight-normal">
                     <strong>{{ item.category}}</strong>
                   </div>
-                  <div>{{ Number(item.money).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}}</div>
+                  <div :color="item.money > 0 ? 'success--text' : 'error'">{{ Number(item.money).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}}</div>
                 </div>
               </v-timeline-item>
             </v-timeline>
@@ -201,7 +207,7 @@
         </v-card>
       </v-row>
     </v-container>
-</Header>
+
 
   <div>
 
@@ -210,12 +216,16 @@
 </template>
 
 <script setup>
-import Header from '@/components/header/Header.vue';
+
 import { onMounted, onBeforeMount, ref, watch } from 'vue';
 import { useStore } from '@/store/index'
 import  Overview from '@/components/overview/overview.vue';
 import { getAllCategoris, getAllMoney } from '@/store/db';
-import  moment  from "moment-timezone"
+import  moment  from "moment"
+
+
+import 'moment/locale/pt-br';
+
 
 const description = ref('')
 const money = ref(0)
@@ -233,18 +243,11 @@ const selectedSlide = ref('');
 
 watch(selectedSlide, (value) => {
   // Aqui você pode realizar alguma ação com o valor do slide selecionado
-  const selectedValue = slides.value[value];
+  const selectedValue = months.value[value];
   console.log(selectedValue);
+
 });
 
-const slides = ref([
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ]
-)
 
 const items = ref([
   { title: 'Receitas', icon: 'mdi-bank-plus',},
@@ -252,24 +255,26 @@ const items = ref([
 ])
 
 
-const storeId = useStore()
-onBeforeMount( async () => {
+const storeId = useStore();
+const months = ref([]);
 
-})
-  onMounted( async () => {
+onBeforeMount(async () => {
+  await getAllMoney();
+  await getAllCategoris();
+  moment.locale('pt-br');
+  const value = storeId.olha;
+  categoris.value = value;
+  const money = storeId.getMoney;
+  const currentMonth = moment().month(); // Obtém o mês atual (0-11, onde janeiro é 0)
 
-    await getAllMoney()
-    await getAllCategoris()
-    const value = storeId.olha
-    categoris.value = value
+  for (let i = 0; i < 12; i++) {
+    const month = moment().month(i).format('MMMM');
+    months.value.push(month);
+  }
 
-    // const valu = storeId.getMoney
-    // catego.value = value
-    // console.log('mo', valu);
-    
-      }
-    )
-
+  // Define o valor inicial do carrossel como o índice do mês atual
+  selectedSlide.value = currentMonth;
+});
 
 const openDialog = (e) => {
   title.value = e.target.innerText
@@ -279,9 +284,7 @@ const openDialog = (e) => {
 const closeDialog = () => {
   dialogVisible.value = false
 }
-const to = (value) => {
-  console.log(value);
-}
+
 
 const submitForm = (event) => {
   event.preventDefault()
@@ -337,6 +340,7 @@ const submitForm = (event) => {
   
   nav a.router-link-exact-active {
     color: #42b983;
+    
   }
   </style>
   

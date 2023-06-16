@@ -1,5 +1,5 @@
 <template>
-    <Header>
+  
         <v-card
           v-for="(item, index) in creditCards.card"
           :key="index"
@@ -82,7 +82,6 @@
             <v-btn to="/">home</v-btn>
         </div>
 
-    </Header>
 </template>
 
 <script setup>

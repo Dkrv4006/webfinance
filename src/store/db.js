@@ -38,7 +38,6 @@ async function getAllCategoris() {
 
    const storeId = useStore()
    const email = await storeId.getEmail
-
       try {
         const citiesRef = collection(db, email, "money", "types")
         const citiesSnapshot = await getDocs(citiesRef);
@@ -47,21 +46,15 @@ async function getAllCategoris() {
           if (doc.exists()) {
             const  data = doc.data()
             dados.push(data)
-  
-            
           } else {console.log("O documento não existe.");
-          }
-          
+        }
         });
        storeId.moneySalve(dados)
-        
       } catch (error) {
         console.error("Erro ao obter documentos:", error);
       }
  }
   
-  
-
   async function addMoneyDB() {
     try {
       const docRef = await addDoc(collection(db, "account"), {

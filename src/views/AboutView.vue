@@ -1,5 +1,5 @@
 <template>
-  <Header>
+
 
     <div>
       <h2>Gerenciamento de Finanças</h2>
@@ -8,7 +8,7 @@
   
    
     </div>
-  </Header>
+
 </template>
 
 <script>
