@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 
   <v-app class="color" >
 
@@ -103,4 +103,4 @@ export default ({
   background: black;
   backgr: #ff7070;
 }
-</style>
+</style> -->

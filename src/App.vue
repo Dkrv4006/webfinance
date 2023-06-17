@@ -11,15 +11,10 @@
 </template>
 <script setup>
 
-import { onBeforeMount,onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
 import Header from '@/components/header/Header.vue';
 
  
 </script>
-
-
-
 
 <style scoped>
 

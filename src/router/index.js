@@ -1,91 +1,38 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginViewView from '../views/LoginView.vue'
-import AccountsView from '@/views/accounts.vue'
+// import LoginViewView from '../views/LoginView.vue'
+
 import CreditcardsView from '@/views/creditcards.vue'
-
-
-
 import Guard from '@/module/auth'
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView,
-    beforeEnter: Guard.auth
+    // beforeEnter: Guard.auth
 
 
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
-    beforeEnter: Guard.auth
-    
-  },
-  {
-    path: '/accounts',
-    name: 'accounts',
-    component: AccountsView,
-    beforeEnter: Guard.auth
-    
-  },
+
   {
     path: '/creditcards',
     name: 'creditcards',
     component: CreditcardsView,
-    beforeEnter: Guard.auth
+    // beforeEnter: Guard.auth
 
   },
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginViewView,
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   component: LoginViewView,
 
-  }
+  // },
+
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-router.afterEach((to, from) => {
-  const toDepth = to.path.split('/').length
-  const fromDepth = from.path.split('/').length
-  to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-})
-
-
-// const user = async () => {
-
-//   return new Promise((resolve, reject) => {
-//     onAuthStateChanged(auth, (user) => {
-//       if (user) {
-//         const uid = user.uid;
-//         console.log(uid);
-//         resolve(user);
-//       } else {
-        
-//         reject(new Error('Usuário não autenticado'));
-//       }
-//     });
-//   });
-
-// }
-// router.beforeEach( async (to, from, next) => {
-
-  // const users = await user()
-
-  // console.log(users);
-  // if (to.meta.auths && users) {next()}
-  //   else if (users == '') {
-  //     console.log('adniel uid');
-  //     next('login');
-  //   } else {
-  //     next();
-  //   }
-
-    
-  // });
 
 
 

@@ -78,6 +78,7 @@
         ['mdi-transfer', 'Transações'],
         ['mdi-credit-card-outline', 'Cartões', 'creditcards'],
         ['mdi-chart-areaspline', 'chart'],
+        ['mdi-chart-areaspline', 'chart', '/config'],
       ],
     }),
 

@@ -1,6 +1,6 @@
 <template>
   
-        <v-card
+        <!-- <v-card
           v-for="(item, index) in creditCards.card"
           :key="index"
           class="mx-auto my-3"
@@ -66,9 +66,9 @@
     
     
   </v-card>
-  <div>
-    <div v-for="(card, index) in creditCards" :key="index">
-      <!-- Renderizar os dados do cartão aqui -->
+  <div> -->
+    <!-- <div v-for="(card, index) in creditCards" :key="index">
+
       <p>Limite: {{ card.limite }}</p>
       <p>Em aberto: {{ card.emaberto }}</p>
       <p>Nome do cartão: {{ card.nameCard }}</p>
@@ -76,7 +76,7 @@
       <p>Fechamento: {{ card.fechamento }}</p>
       <p>Vencimento: {{ card.vencimento }}</p>
     </div>
-  </div>
+  </div> -->
         <div>
             <h2>Cartões de credito</h2>
             <v-btn to="/">home</v-btn>
@@ -85,48 +85,48 @@
 </template>
 
 <script setup>
-import Header from '@/components/header/Header.vue';
-import { useStore } from '@/store/index'
-import { ref } from 'vue';
+// import Header from '@/components/header/Header.vue';
+// import { useStore } from '@/store/index'
+// import { ref } from 'vue';
 
-const creditCards = ref({
- card:[
-     {
-    limite: 1000,
-    emaberto: 100,
-    nameCard: 'Nubank',
-    fatura: 100,
-    fechamento: '01/jun',
-    vencimento:  '01/jun',
-    cor: '#4a3485'
-  },
-   {
-    limite: 1300,
-    emaberto: 423,
-    nameCard: 'Nuba',
-    fatura: 400,
-    fechamento: '01/jun',
-    vencimento:  '01/jun',
-    cor: '#4a3425'
-  },
-   {
-    limite: 4230,
-    emaberto: 423,
-    nameCard: 'ank',
-    fatura: 1230,
-    fechamento: '01/jun',
-    vencimento:  '01/jun',
-    cor:  '#013324',
-  },
-]
-})
+// const creditCards = ref({
+//  card:[
+//      {
+//     limite: 1000,
+//     emaberto: 100,
+//     nameCard: 'Nubank',
+//     fatura: 100,
+//     fechamento: '01/jun',
+//     vencimento:  '01/jun',
+//     cor: '#4a3485'
+//   },
+//    {
+//     limite: 1300,
+//     emaberto: 423,
+//     nameCard: 'Nuba',
+//     fatura: 400,
+//     fechamento: '01/jun',
+//     vencimento:  '01/jun',
+//     cor: '#4a3425'
+//   },
+//    {
+//     limite: 4230,
+//     emaberto: 423,
+//     nameCard: 'ank',
+//     fatura: 1230,
+//     fechamento: '01/jun',
+//     vencimento:  '01/jun',
+//     cor:  '#013324',
+//   },
+// ]
+// })
 
-const jsonString = JSON.stringify(creditCards);
-const sizeInBytes = new Blob([jsonString]).size;
-const sizeInKB = sizeInBytes / 1024;
-console.log(sizeInKB); // Saída: tamanho em kilobytes (KB)
+// const jsonString = JSON.stringify(creditCards);
+// const sizeInBytes = new Blob([jsonString]).size;
+// const sizeInKB = sizeInBytes / 1024;
+// console.log(sizeInKB); // Saída: tamanho em kilobytes (KB)
 
-const storeId = useStore()
+// const storeId = useStore()
 
 </script>
 

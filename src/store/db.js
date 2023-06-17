@@ -6,7 +6,7 @@ import { useStore } from "./index";
 
 
 const deleteFinance = async (id) => {
-  await deleteDoc(doc(db, "revenue", id));
+  await deleteDoc(doc(db, "money", id));
 }
 
 async function getAllCategoris() {
@@ -49,7 +49,7 @@ async function getAllCategoris() {
           } else {console.log("O documento não existe.");
         }
         });
-       storeId.moneySalve(dados)
+      //  storeId.moneySalve(dados)
       } catch (error) {
         console.error("Erro ao obter documentos:", error);
       }
@@ -76,8 +76,9 @@ async function getAllCategoris() {
 // getFilterFinance()
 
   async function getAllFinance() {
+    const storeId = useStore()
     try {
-      const citiesRef = collection(db, "revenue")
+      const citiesRef = collection(db, "money")
       const citiesSnapshot = await getDocs(citiesRef);
   
       let dados = []
@@ -89,15 +90,15 @@ async function getAllCategoris() {
         //   console.log(cityData);
 
           dados.push(doc.data())
-        //   console.log("Dados do documento:", dados);
+          // console.log("Dados do documento:", dados);
         
         } else {
           console.log("O documento não existe.");
         }
 
       });
-
-      return  dados
+      storeId.moneySalve(dados)
+      // return  dados
     } catch (error) {
       console.error("Erro ao obter documentos:", error);
     }
@@ -107,5 +108,7 @@ async function getAllCategoris() {
 
 export {
     getAllCategoris,
-    getAllMoney
+    getAllMoney,
+    getAllFinance,
+    deleteFinance
 }
