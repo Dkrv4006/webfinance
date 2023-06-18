@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-// import LoginViewView from '../views/LoginView.vue'
+import LoginViewView from '../views/config.vue'
 
 import CreditcardsView from '@/views/creditcards.vue'
 // import Guard from '@/module/auth'
@@ -10,8 +10,12 @@ const routes = [
     name: 'home',
     component: HomeView,
     // beforeEnter: Guard.auth
-
-
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: HomeView,
+    // beforeEnter: Guard.auth
   },
 
   {
@@ -21,12 +25,12 @@ const routes = [
     // beforeEnter: Guard.auth
 
   },
-  // {
-  //   path: '/login',
-  //   name: 'login',
-  //   component: LoginViewView,
+  {
+    path: '/config',
+    name: 'login',
+    component: LoginViewView,
 
-  // },
+  },
 
 ]
 const router = createRouter({

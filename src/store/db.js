@@ -78,17 +78,16 @@ async function getAllCategoris() {
   async function getAllFinance() {
     const storeId = useStore()
     try {
-      const citiesRef = collection(db, "revenue")
+      const citiesRef = collection(db, "money")
       const citiesSnapshot = await getDocs(citiesRef);
   
       let dados = []
       citiesSnapshot.forEach((doc) => {
         if (doc.exists()) {
-          const cityid = doc.id;
-          const cityData = doc.data();
-        //   console.log(cityid);
+        //   const cityid = doc.id;
+        //   const cityData = doc.data();
+        // //   console.log(cityid);
         //   console.log(cityData);
-
           dados.push(doc.data())
           // console.log("Dados do documento:", dados);
         
@@ -97,6 +96,7 @@ async function getAllCategoris() {
         }
 
       });
+    
       storeId.moneySalve(dados)
       // return  dados
     } catch (error) {

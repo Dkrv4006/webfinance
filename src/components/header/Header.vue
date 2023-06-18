@@ -1,6 +1,6 @@
 
 <template>
-    <v-app id="inspire" color="secondary">
+    <v-app id="inspire" color="secondary" v-theme="selectedTheme" >
         <v-navigation-drawer v-model="drawer" color="secondary">
          <v-text-field>Finance<strong>Dkrv</strong> </v-text-field>
         
@@ -11,7 +11,7 @@
         >
         <v-btn
           class="w-100 mt-5"
-          href="/about"
+          href="/home"
           color="secondary"
           elevation="0"
           :to="link"
@@ -61,24 +61,25 @@
         </v-main>
         <New></New>
 
-
+     
+        <Config v-show="false" />
     </v-app>
   
   </template>
   
   <script setup>
-  import { ref } from "vue"
+  import {  ref } from "vue"
 import New from "../creditCards/new.vue"
 
-
+import Config from "@/views/config.vue";
 const drawer = ref(false)
-const cards = ref(['Today', 'Yesterday'])
+
 const links = ref([
-        ['mdi-view-dashboard', 'Dashboard', '/'],
-        ['mdi-bank', 'Contas', '/accounts'],
+        ['mdi-view-dashboard', 'Dashboard', '/home'],
+        ['mdi-bank', 'Contas', '/home'],
         ['mdi-transfer', 'Transações'],
-        ['mdi-credit-card-outline', 'Cartões', 'creditcards'],
-        ['mdi-chart-areaspline', 'chart'],
+        ['mdi-credit-card-outline', 'Cartões', '/home'],
+        ['mdi-chart-areaspline', 'chart', '/home'],
         ['mdi-chart-areaspline', 'chart', '/config'],
       ],)
        

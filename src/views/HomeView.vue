@@ -10,23 +10,23 @@
       >
  
         <template v-slot:default="{ isActive }">
-          <v-card>
+          <v-card color="secondary">
             <v-toolbar
               color="primary"
-              title="Opening from the bottom"
+              title="Sera apagado do BANCO!"
             ></v-toolbar>
             <v-card-text>
-              <div class="text-h2 pa-12">Hello world!</div>
+              <div class="text-h4 pa-12">Deseja excluir?</div>
             </v-card-text>
             <v-card-actions class="justify-end">
               <v-btn
                 variant="text"
                 @click="yesDelete"
-              >yes</v-btn>
+              >Sim</v-btn>
               <v-btn
-                variant="text"
+                variant="tonal"
                 @click="isActive.value = false"
-              >Close</v-btn>
+              >Não</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -42,13 +42,13 @@
               Today
             </div>
   
-           <table class="  w-100 texte"  >
-            <thead class="w-100%" color="red">
-            <th> % </th>
-             <th> data</th>
-              <th>description </th>
-              <th> ds </th>
-              <th> deleta </th>
+           <table theme="dark" class="  w-100 texte"  >
+            <thead class="primary">
+            <th> Tipo </th>
+             <th> Data </th>
+              <th>Descrição </th>
+              <th> Valor </th>
+              <th> Excluir </th>
          
             </thead>
             <tbody class="w-100%" >
@@ -58,11 +58,12 @@
                 size="small"
                 fill-dot
                 :icon-color="item.valor > 0 ? 'success' : 'error'"></v-timeline-item></td>
-                <td>{{ item.date }}</td>
+                <td>{{ item.dateCreate }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.valor }}</td>
 
-                <td><v-btn :value="item.id" icon="mdi-delete" color="secondary" elevation="0" @click="openDelete(item.id)" ></v-btn></td>
+                <td><v-btn :value="item.uuid" icon="mdi-delete" color="secondary" elevation="0" @click="openDelete(item.uuid)" ></v-btn></td>
+          
               </tr>
             </tbody>
            </table>
@@ -72,39 +73,32 @@
   
     </v-container>
 
-
-  <div>
-
- 
-  </div>
 </template>
 
 <script setup>
 
-import { onMounted, onBeforeMount, ref, watch } from 'vue';
+import { onMounted, onBeforeMount, ref, watch,computed } from 'vue';
 import { useStore } from '@/store/index'
 import  Overview from '@/components/overview/overview.vue';
 import { deleteFinance, getAllCategoris, getAllFinance, getAllMoney } from '@/store/db';
 import  moment  from 'moment-timezone'
- 
+// import { useTheme } from 'vuetify';
+
+// const { theme } = useTheme();
+// console.log(theme);
+// const tableHeadClass = computed( async() => {
+//   return theme.value.dark ? 'theme--dark' : 'theme--light';
+// });
+
 
 import 'moment/locale/pt-br';
 
 
-const description = ref('')
-const idDelete = ref('')
-const money = -ref()
-const category = ref('')
-const categoris = ref('')
-const date = ref('')
-const conta = ref('')
 
-const dialogVisible = ref(false)
+const idDelete = ref('')
+
 const deleteVisible = ref(false)
-const drawer = ref(false)
-const show = ref(false)
-const title = ref('')
-const location = ref('left')
+
 const selectedSlide = ref('');
 
 watch(selectedSlide, (value) => {
@@ -120,6 +114,7 @@ async function deleteMoney(value){
   await getAllFinance();
 
 }
+
 const items = ref([
   { title: 'Receitas', icon: 'mdi-bank-plus',},
   { title: 'Despesas', icon: 'mdi-bank-minus' },
@@ -130,27 +125,14 @@ const storeId = useStore();
 const months = ref([]);
 
 onBeforeMount(async () => {
+  console.log('onBeforeMount1');
   await getAllFinance();
-  // moment.locale('pt-br');
-  // const value = storeId.olha;
-  // categoris.value = value;
 
-  // const currentMonth = moment().month(); // Obtém o mês atual (0-11, onde janeiro é 0)
-
-  // for (let i = 0; i < 12; i++) {
-  //   const month = moment().month(i).format('MMMM');
-  //   months.value.push(month);
-  // }
-
-  // // Define o valor inicial do carrossel como o índice do mês atual
-  // selectedSlide.value = currentMonth;
 });
 
-const openDialog = (e) => {
-  title.value = e.target.innerText
-  dialogVisible.value = true
-}
+
 const openDelete = (da) => {
+  console.log(da);
    idDelete.value = da
   deleteVisible.value = true
 }
@@ -166,6 +148,12 @@ const yesDelete = () => {
 </script>
 
 <style scoped>
+
+.custom-class {
+    background: rgb(var(--primary));
+    /* color: rgba(var(--v-theme-on-something), 0.9); */
+  }
+
 table {
   border-collapse: separate;
   border-spacing: 0 10px;

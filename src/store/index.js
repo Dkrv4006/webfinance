@@ -17,7 +17,9 @@ export const useStore = defineStore('storeId', {
       },
       categories: [],
       user: '',
+      money: '',
       valor:'',
+      salveColor:'',
     };
   },
 
@@ -47,7 +49,10 @@ export const useStore = defineStore('storeId', {
     },
     moneySalve(data){
       this.money = data
-    }
+    },
+    salveColor(data){
+      this.salveColor = data
+    },
   },
 
   getters: {
@@ -56,12 +61,16 @@ export const useStore = defineStore('storeId', {
     },
 
     getEmail() {
-      console.log('getemail', this.user);
+
       return this.user;
     },
     getMoney() {
-      console.log(this.money,'1111');
+      
       return this.money;
+    },
+    getColor() {
+
+      return this.salveColor
     },
   },
 });

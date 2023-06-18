@@ -34,7 +34,7 @@ body, html{
       transform: translateX(100px);
 }
 .fade-enter-active{
-      transition: ass 0.3s ease-out;
+      transition: all 0.3s ease-out;
 }
 .fade-leave-to {
       opacity: 0;

@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, onBeforeMount } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -17,6 +17,7 @@ const firebaseConfig = {
 };
 
 const app = createApp(App)
+
 console.log('main');
 // Função para configurar o Firebase e adicioná-lo como plugin no Vue
 function configureFirebase() {
@@ -39,6 +40,9 @@ const [  db ]  =  configureFirebase()
 import { createPinia } from 'pinia'
 const pinia = createPinia()
 app.use(router).use(store).use(pinia).use(vuetify).mount('#app')
+
+
+
 
 export {
    db

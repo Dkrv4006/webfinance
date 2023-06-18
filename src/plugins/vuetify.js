@@ -3,16 +3,64 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { createVuetify, ThemeDefinition } from 'vuetify'
 // Vuetify
+import { createApp } from 'vue'
 
-
-
-const myCustomLightTheme = {
-  dark: false,
+const myCustomPinckTheme = {
+  dark: true,
   colors: {
     background: '#FFFFFF',
     surface: '#FFFFFF',
     primary: '#FF1867',
+    primary01: '#FF186750',
     'primary-darken-1': '#3700B3',
+    secondary: '#222222',
+    'secondary-darken-1': '#018786',
+    error: '#ff002c',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+  },
+}
+
+const myCustomYellonTheme = {
+  dark: true,
+  colors: {
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    primary: '#ffff0050',
+    primary01: '#ffff0050',
+    'primary-darken-1': '#3700B3',
+    secondary: '#222222',
+    'secondary-darken-1': '#018786',
+    error: '#ff002c',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+  },
+}
+const myCustomBlueTheme = {
+  dark: true,
+  colors: {
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    primary: '#2196F3',
+    primary01: '#2196F350',
+    'primary-darken-1': '#3700B3',
+    secondary: '#222222',
+    'secondary-darken-1': '#018786',
+    error: '#ff002c',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+  },
+}
+const myCustomRedTheme = {
+  dark: true,
+  colors: {
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    primary: '#ff0000',
+    primary01: '#ff000050',
     secondary: '#222222',
     'secondary-darken-1': '#018786',
     error: '#ff002c',
@@ -27,9 +75,12 @@ const myCustomLightTheme = {
 
 export default createVuetify({
   theme: {
-    defaultTheme: 'myCustomLightTheme',
+    defaultTheme: 'myCustomPinckTheme',
     themes: {
-      myCustomLightTheme,
+      myCustomBlueTheme,
+      myCustomYellonTheme,
+      myCustomPinckTheme,
+      myCustomRedTheme,
     },
   },
 
