@@ -55,42 +55,33 @@
             </v-avatar>
           </v-toolbar-title>
         </v-app-bar>
-   
+        
         <v-main class="color">
-            <slot></slot>
+          <slot></slot>
         </v-main>
+        <New></New>
+
+
     </v-app>
   
   </template>
   
-  <script>
-  name: 'Header'
-    export default {
-      data: () => ({ 
-        photoURL:  "",
-        drawer: false ,
+  <script setup>
+  import { ref } from "vue"
+import New from "../creditCards/new.vue"
 
-      cards: ['Today', 'Yesterday'],
 
-      links: [
+const drawer = ref(false)
+const cards = ref(['Today', 'Yesterday'])
+const links = ref([
         ['mdi-view-dashboard', 'Dashboard', '/'],
         ['mdi-bank', 'Contas', '/accounts'],
         ['mdi-transfer', 'Transações'],
         ['mdi-credit-card-outline', 'Cartões', 'creditcards'],
         ['mdi-chart-areaspline', 'chart'],
         ['mdi-chart-areaspline', 'chart', '/config'],
-      ],
-    }),
-
-    
-    mounted() {
-      // const userData = localStorage.getItem('userData')
-
-        // const { uid, photoURL, displayName } = JSON.parse(userData)
-        // this.photoURL = photoURL
-        // console.log(this.photoURL );
-    },
-    }
+      ],)
+       
   </script>
   
   <style scoped>

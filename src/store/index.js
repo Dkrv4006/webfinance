@@ -6,28 +6,33 @@ export const useStore = defineStore('storeId', {
   state() {
     return {
       receita: {
-        category: '',
-        money: '',
-        date: '',
-        conta: '',
-        dateCreate: '',
+        origin: '',
         description: '',
+        valor: '',
+        date: '',
+        formpayment: '',
+        category: '',
+        dateCreate: '',
+
       },
       categories: [],
       user: '',
-      money:'',
+      valor:'',
     };
   },
 
   actions: {
-    salva(description, money, date, conta, category, dateCreate) {
-      this.receita.description = description;
-      this.receita.money = money;
-      this.receita.category = category;
-      this.receita.date = date;
-      this.receita.conta = conta;
-      this.receita.dateCreate = dateCreate;
+    salva(data) {
+      this.receita.origin = data[0];
+      this.receita.description = data[1];
+      this.receita.valor = data[2];
+      this.receita.date = data[3];
+      this.receita.formpayment = data[4];
+      this.receita.category = data[5];
+      this.receita.dateCreate = data[6];
+ 
 
+      console.log(this.receita);
       newTrasation(this.receita);
     },
 

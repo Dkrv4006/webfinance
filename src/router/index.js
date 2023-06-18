@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 // import LoginViewView from '../views/LoginView.vue'
 
 import CreditcardsView from '@/views/creditcards.vue'
-import Guard from '@/module/auth'
+// import Guard from '@/module/auth'
 const routes = [
   {
     path: '/',

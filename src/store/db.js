@@ -78,7 +78,7 @@ async function getAllCategoris() {
   async function getAllFinance() {
     const storeId = useStore()
     try {
-      const citiesRef = collection(db, "money")
+      const citiesRef = collection(db, "revenue")
       const citiesSnapshot = await getDocs(citiesRef);
   
       let dados = []

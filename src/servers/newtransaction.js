@@ -1,33 +1,25 @@
 
 import { auths, db, provider,  } from '@/main'
-import { doc, setDoc, getDoc, collection, getDocs } from "firebase/firestore";
+import { doc, setDoc, getDoc, collection, getDocs,addDoc } from "firebase/firestore";
 import { v4 as uuidV4 } from 'uuid'
 
 
-const newTrasation =  async (data) => {
-
+const newTrasation = async (data) => {
   if (!data) {
-    alert('errro')
+    alert('erro');
   } else if (data) {
-            const uuid = uuidV4()
+    try {
+      const uuid = uuidV4();
+      const newData = { ...data, uuid }; // Inclui o UUID no objeto de dados
 
-                 await setDoc(doc(db,'money', uuid), {
-                  description: data.description,
-                  money: data.money,
-                  category: data.category,
-                  date: data.date,
-                  conta: data.conta,
-                  dateCreate: data.dateCreate,
-                  id: uuid,
-                 });
-               
+      console.log('new', uuid);
+      await setDoc(doc(db, 'money', uuid), newData);
+    } catch (error) {
+      console.error("Erro ao adicionar documento:", error);
+    }
+  }
+};
 
-
-          }
-}
-
-
-    
 export{
     newTrasation
 }
