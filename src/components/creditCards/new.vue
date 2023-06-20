@@ -61,7 +61,7 @@
                 color="primary01"
                 clearable
                 label="Descrição"
-                prepend-icon="mdi-bank"
+                prepend-icon="mdi-text-box-edit"
                 variant="plain"
                 v-model="description"
             ></v-text-field>
@@ -70,7 +70,7 @@
                 color="primary01"
                 clearable
                 label="R$0,00"
-                prepend-icon="mdi-bank"
+                prepend-icon="mdi-cash-multiple"
                 variant="plain"
                 type="number"
                 v-model="valor"
@@ -80,20 +80,20 @@
                 color="primary01"
                 clearable
                 label="Data"
-                prepend-icon="mdi-bank"
+                prepend-icon="mdi-calendar-range"
                 variant="plain"
                 type="date"
-                v-model="date"
+                v-model="dateCreate"
             ></v-text-field>
             <v-autocomplete
                 :rules="nameRules"
                 :items="formp"
-                prepend-icon="mdi-bank"
+                prepend-icon="mdi-check-bold"
                 label="Conta"
                 variant="plain"
                 v-model="formpayment"
               ></v-autocomplete
-            ><v-autocomplete :rules="nameRules" :items="items" prepend-icon="mdi-bank"  label="Categotia" variant="plain" v-model="category" ></v-autocomplete>
+            ><v-autocomplete :rules="nameRules" :items="items" prepend-icon="mdi-shape"  label="Categotia" variant="plain" v-model="category" ></v-autocomplete>
             <v-btn type="submit" block class="mt-2" color="success">Submit</v-btn>
           </v-form>
       </v-card-text>
@@ -110,7 +110,7 @@
                 <v-text-field :rules="nameRules" color="primary01" clearable label="Destino" prepend-icon="mdi-bank" variant="plain" v-model="origin" ></v-text-field>
             <v-text-field  :rules="nameRules" required color="primary01" clearable label="Descrição" prepend-icon="mdi-bank" variant="plain" v-model="description" ></v-text-field>
             <v-text-field :rules="nameRules" color="primary01" clearable label="R$0,00" prepend-icon="mdi-bank" variant="plain" type="number" v-model="valor" ></v-text-field>
-            <v-text-field :rules="nameRules" color="primary01" clearable label="Data" prepend-icon="mdi-bank" variant="plain" type="date" v-model="date" ></v-text-field>
+            <v-text-field :rules="nameRules" color="primary01" clearable label="Data" prepend-icon="mdi-bank" variant="plain" type="date" v-model="dateCreate" ></v-text-field>
             <v-autocomplete :rules="nameRules" :items="formp" prepend-icon="mdi-bank"  label="Conta" variant="plain" v-model="formpayment" ></v-autocomplete>
             <v-autocomplete :rules="nameRules" :items="items" prepend-icon="mdi-bank"  label="Categotia" variant="plain" v-model="category" ></v-autocomplete>
             <v-btn type="submit" block class="mt-2" color="#ff0000">Submit</v-btn>
@@ -132,7 +132,7 @@
 
 <script setup>
 
-import { ref} from 'vue';
+import { ref } from 'vue';
 import { useStore } from '@/store/index'
 import { v4 as uuidV4 } from 'uuid'
 import { deleteFinance, getAllCategoris, getAllFinance, getAllMoney } from '@/store/db';
@@ -145,7 +145,7 @@ const description = ref()
 const valor = ref()
 const formpayment = ref()
 const category = ref()
-const date = ref('')
+const dateCreate = ref('')
 // const conta = ref('')
 
 const location = ref('left')
@@ -179,7 +179,7 @@ const openDialog = (e) => {
 const submitForm = (event, signal) => {
   event.preventDefault();
   let day = moment.tz('America/Sao_Paulo');
-  let dateCreate = day.format('DD/MM/YYYY HH:mm');
+  let date = day.format('DD/MM/YYYY HH:mm');
   getAllFinance();
 
   // Validação dos campos
@@ -187,7 +187,7 @@ const submitForm = (event, signal) => {
     origin.value === '' ||
     description.value === '' ||
     valor.value === '' ||
-    date.value === '' ||
+    dateCreate.value === '' ||
     formpayment.value === '' ||
     category.value === ''
   ) {
@@ -199,10 +199,10 @@ const submitForm = (event, signal) => {
     origin.value,
     description.value,
     signal * valor.value,
-    date.value,
+    dateCreate.value,
     formpayment.value,
     category.value,
-    dateCreate,
+    date,
   ];
 
   storeId.salva(data);
@@ -211,7 +211,7 @@ const submitForm = (event, signal) => {
   description.value = '';
   valor.value = '';
   category.value = '';
-  date.value = '';
+  date
   origin.value = '';
 };
 

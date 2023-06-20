@@ -28,10 +28,10 @@ export const useStore = defineStore('storeId', {
       this.receita.origin = data[0];
       this.receita.description = data[1];
       this.receita.valor = data[2];
-      this.receita.date = data[3];
+      this.receita.dateCreate = data[3];
       this.receita.formpayment = data[4];
       this.receita.category = data[5];
-      this.receita.dateCreate = data[6];
+      this.receita.date = data[6];
  
 
       console.log(this.receita);

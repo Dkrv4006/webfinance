@@ -6,7 +6,7 @@ import { useStore } from "./index";
 
 
 const deleteFinance = async (id) => {
-  await deleteDoc(doc(db, "money", id));
+  await deleteDoc(doc(db, "revenue", id));
 }
 
 async function getAllCategoris() {
@@ -39,7 +39,7 @@ async function getAllCategoris() {
    const storeId = useStore()
    const email = await storeId.getEmail
       try {
-        const citiesRef = collection(db, email, "money", "types")
+        const citiesRef = collection(db, email, "revenue", "types")
         const citiesSnapshot = await getDocs(citiesRef);
         let dados = []
         citiesSnapshot.forEach((doc) => {
@@ -78,7 +78,7 @@ async function getAllCategoris() {
   async function getAllFinance() {
     const storeId = useStore()
     try {
-      const citiesRef = collection(db, "money")
+      const citiesRef = collection(db, "revenue")
       const citiesSnapshot = await getDocs(citiesRef);
   
       let dados = []

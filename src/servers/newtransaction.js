@@ -13,7 +13,7 @@ const newTrasation = async (data) => {
       const newData = { ...data, uuid }; // Inclui o UUID no objeto de dados
 
       console.log('new', uuid);
-      await setDoc(doc(db, 'money', uuid), newData);
+      await setDoc(doc(db, 'revenue', uuid), newData);
     } catch (error) {
       console.error("Erro ao adicionar documento:", error);
     }

@@ -11,12 +11,6 @@ const routes = [
     component: HomeView,
     // beforeEnter: Guard.auth
   },
-  {
-    path: '/home',
-    name: 'home',
-    component: HomeView,
-    // beforeEnter: Guard.auth
-  },
 
   {
     path: '/creditcards',

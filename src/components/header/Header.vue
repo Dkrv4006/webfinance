@@ -75,12 +75,12 @@ import Config from "@/views/config.vue";
 const drawer = ref(false)
 
 const links = ref([
-        ['mdi-view-dashboard', 'Dashboard', '/home'],
-        ['mdi-bank', 'Contas', '/home'],
-        ['mdi-transfer', 'Transações'],
-        ['mdi-credit-card-outline', 'Cartões', '/home'],
-        ['mdi-chart-areaspline', 'chart', '/home'],
-        ['mdi-chart-areaspline', 'chart', '/config'],
+        ['mdi-view-dashboard', 'Dashboard', '/'],
+        // ['mdi-bank', 'Contas', '/home'],
+        // ['mdi-transfer', 'Transações'],
+        // ['mdi-credit-card-outline', 'Cartões', '/home'],
+        // ['mdi-chart-areaspline', 'chart', '/home'],
+        ['mdi-cog-outline', 'Configurações', '/config'],
       ],)
        
   </script>

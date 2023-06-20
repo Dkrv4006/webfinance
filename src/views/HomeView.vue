@@ -1,6 +1,6 @@
 <template>
 
-    <Overview />
+    <!-- <Overview /> -->
    
 
   <v-dialog
@@ -45,20 +45,22 @@
            <table theme="dark" class="  w-100 texte"  >
             <thead class="primary">
             <th> Tipo </th>
-             <th> Data </th>
+            <th> Data </th>
+            <th> Ori/Des </th>
               <th>Descrição </th>
               <th> Valor </th>
               <th> Excluir </th>
          
             </thead>
             <tbody class="w-100%" >
-              <tr  v-for="(item , index ) in storeId.getMoney " :key="index">
+              <tr class="animate__backInLeft"  v-for="(item , index ) in storeId.getMoney " :key="index">
                 <td><v-timeline-item  dot-color="secondary"
                 :icon="item.valor > 0 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-right'"
                 size="small"
                 fill-dot
                 :icon-color="item.valor > 0 ? 'success' : 'error'"></v-timeline-item></td>
-                <td>{{ item.dateCreate }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.origin }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.valor }}</td>
 
@@ -109,30 +111,20 @@ watch(selectedSlide, (value) => {
 });
 
 async function deleteMoney(value){
-  console.log(value);
   deleteFinance(value)
   await getAllFinance();
 
 }
-
-const items = ref([
-  { title: 'Receitas', icon: 'mdi-bank-plus',},
-  { title: 'Despesas', icon: 'mdi-bank-minus' },
-])
-
-
 const storeId = useStore();
 const months = ref([]);
 
 onBeforeMount(async () => {
-  console.log('onBeforeMount1');
   await getAllFinance();
 
 });
 
 
 const openDelete = (da) => {
-  console.log(da);
    idDelete.value = da
   deleteVisible.value = true
 }
@@ -173,6 +165,9 @@ table tr:last-child {
 }
 thead{
 
+}
+td{
+  max-width: 180px;
 }
 table th,
 table td {

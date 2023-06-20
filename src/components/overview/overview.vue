@@ -24,7 +24,7 @@
     </v-col>
   </v-row>
     <!-- <hr color="#FF1867"> -->
-    <v-divider color="#FF1867"  :thickness="9"></v-divider>
+    <v-divider color="primary"  :thickness="9"></v-divider>
  
     <v-btn 
     class="w-100 mt-3" 

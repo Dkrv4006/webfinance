@@ -1,15 +1,25 @@
 <template>
-  <div>
-    <v-btn @click="selectedTheme('myCustomBlueTheme')" color="blue">Blue theme</v-btn>
-    <v-btn @click="selectedTheme('myCustomYellonTheme')" color="#ffff00">Yellon theme</v-btn>
-    <v-btn @click="selectedTheme('myCustomPinckTheme')" color="#FF1867">Pinck theme</v-btn>
-    <v-btn @click="selectedTheme('myCustomRedTheme')" color="#ff0000">Pinck theme</v-btn>
+  <v-card
+  class="ma-auto my-5"
+   max-width="440px"
+   color="secondary"
+  >
+  <v-card-title>Tema</v-card-title>
 
-  </div>
+  <v-card-text>
+
+    <v-btn class="mx-2" @click="selectedTheme('myCustomBlueTheme')" color="blue">Blue</v-btn>
+    <v-btn class="mx-2" @click="selectedTheme('myCustomYellonTheme')" color="#ffff00">Yellon</v-btn>
+    <v-btn class="mx-2" @click="selectedTheme('myCustomPinckTheme')" color="#FF1867">Pinck </v-btn>
+    <v-btn class="mx-2" @click="selectedTheme('myCustomRedTheme')" color="#ff0000">Pinck </v-btn>
+  </v-card-text>
+  </v-card>
+
+
 </template>
 
 <script setup>
-import { useStore } from '@/store';
+
 
 import { onMounted, ref } from "vue"
 import { useTheme } from 'vuetify'
@@ -39,7 +49,6 @@ const selectedTheme = (a) => {
 }
 
 
- const storeId =  useStore()
 
 </script>
 
